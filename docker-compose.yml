@@ -1,0 +1,45 @@
+version: '3.1'
+
+services:
+
+  vault0:
+    hostname: vault0
+    build: ./vault
+    environment:
+      - NODE_NAME=vault0
+      - TOTAL_NODES=3
+    volumes:
+      - vault-token:/etc/vault-token
+    ports:
+      - 8200:8200
+    cap_add:
+      - IPC_LOCK
+
+  vault1:
+    hostname: vault1
+    build: ./vault
+    environment:
+      - NODE_NAME=vault1
+      - TOTAL_NODES=3
+    volumes:
+      - vault-token:/etc/vault-token
+    ports:
+      - 8201:8200
+    cap_add:
+      - IPC_LOCK
+
+  vault2:
+    hostname: vault2
+    build: ./vault
+    environment:
+      - NODE_NAME=vault2
+      - TOTAL_NODES=3
+    volumes:
+      - vault-token:/etc/vault-token
+    ports:
+      - 8202:8200
+    cap_add:
+      - IPC_LOCK
+
+volumes:
+  vault-token:
